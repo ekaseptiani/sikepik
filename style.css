@@ -1,0 +1,366 @@
+
+body {
+	background: url(img/biru.jpg);
+}
+#kanvas {
+width : 1000px;
+height : 630px;
+margin : 0 auto;
+padding : 8px;
+border : solid 5px black ;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 23px;
+}
+#header {
+width : 963px;
+height : 80px;
+background-color : ;
+background-image: url(../img/sikepik.png);
+border : solid 3px #333;
+padding: 15px;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+margin: 0; 
+line-height: 23px;
+color: black;
+
+}
+
+.judul {
+font : bold 25pt Copperplate Gothic Bold;
+margin : 20px 20px 2px 20px;
+color: black;
+background-image: url('../img/sikepik.png');
+
+}
+.deskripsi {
+font : normal normal 14pt cambria;
+margin : 3px 20px 2px 20px;
+color: black;
+background-image: url('../img/sikepik.png');
+}
+#menu {
+width : 975px;
+height : 70px;
+background-color :;
+margin-top : 0 auto;
+padding : ;
+float : left;
+border : ;
+color: black;
+}
+
+#leftbar {
+width : 180px;
+background-color : #6699ff;
+margin-top : 10px;
+margin-right : 10px;
+float : left;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 23px;
+}
+#content {
+width : 620px;
+height : 390px;
+background-color : ;
+border : x;
+margin-top : 10px;
+float : left;
+}
+
+.grafik {
+margin: 0 auto;
+width : 820px;
+height : 390px;
+margin-top : 10px;
+float : right;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 23px;
+}
+.isibar {
+font : bold 13pt cambria;
+margin : 10px ;
+overflow-y: ;
+overflow-x: hidden;
+font : bold 12pt cambria;
+weight: 360px;
+height: 370px;
+font : 12px;
+}
+.isibar ul {
+margin-left : -25px;
+}
+.isibar ul li {
+font : normal normal 11pt cambria;
+list-style : none;
+padding-bottom : 10px;
+}
+.komoditasisi {
+margin : 10px ;
+font : bold 12pt cambria;
+}
+.komoditasisi ul {
+margin-left : -25px;
+}
+.komoditasisi ul li {
+font : normal normal 12pt cambria;
+list-style : none;
+padding-bottom : 10px;
+}
+.perbandinganisi {
+font : 12pt cambria;
+margin : 10px ;
+}
+#footer {
+width : 1000px;
+height : 40px;
+background-color :;
+border : solid 1px #333;
+margin-top : 10px;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 23px;
+float : center;
+}
+#komoditas {
+width : 165px;
+height : 400px;
+background-color : ;
+margin-top : 10px;
+margin-right : 10px;
+float : left;
+font : 12px;
+-moz-border-radius: 10px;
+-khtml-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+line-height: 18px;
+border : solid 1px black;
+}
+#informasi{
+width : 300px;
+height : 400px;
+background-color : ;
+margin-top : 10px;
+margin-right : 10px;
+float : left;
+font : 12px;
+-moz-border-radius: 10px;
+-khtml-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+line-height: 18px;
+border : solid 1px black;
+	
+}
+#isiinformasi {
+font : bold 13pt cambria;
+margin : 10px ;
+font : bold 12pt cambria;
+weight: 360px;
+height: 370px;
+font : 12px;
+}
+
+#perbandingan {
+width : 808px;
+height : 400px;
+background-color : ;
+margin-top : 10px;
+float : left;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 23px;
+}
+#datakelompok {
+width :808px;
+height : 400px;
+background-color :;
+margin-top : 10px;
+float : left;
+-moz-border-radius: 10px;
+-khtml-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 13px;
+line-height: 15px;
+}
+
+#loginadmin {
+width : 1000px;
+height : 360px;
+background:url(img/laut.jpg) ;
+margin-top : 10px;
+font: bold 18px cambria ;
+color : rgba(248,248, 0,0);
+float : left;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 23px;
+}
+
+.*{
+	padding:0;
+	margin:0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+ul {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+body {
+	font-family: 'cambria', serif;
+}
+h1,h2,h2,h3,h4,h5 {
+	margin:0.3em 0 0.5em 0;
+}
+}
+.container {
+	margin:auto;
+	margin-top:7px;
+	overflow: auto;
+	padding:7px;
+}
+/* CSS buat scrol*/
+.scroll{
+width : 998px;
+height : 50px;
+background-color : #ffffff    ;
+border : ;
+margin-top : 10px;
+padding : 0;
+float : left;
+overflow :auto;
+}
+.tabel{ /* CSS Tabel */
+	border-collapse: collapse;
+}
+.zth{ /* CSS Tabel Header */
+font-family: Arial;
+font-size: 20px;
+color: black;
+text-align: left;
+background-color: ;
+}
+.ztr{ /* CSS Tabel Data */
+font-family: ;
+font-size: 12px;
+font-weight:bold;
+color: #333;
+text-align: left;
+text-warp:none;
+}
+.ztr:nth-child(even){ /* style td dengan warna biru*/
+background: #6699ff;
+}
+.ztr:nth-child(odd){/* style td dengan warna biru */
+background: #6699ff;
+}
+.isitabel {
+}
+.kosong{
+overflow-y: scroll;
+overflow-x: hidden;
+font : bold 10pt Arial;
+margin: 10px;
+weight: 360px;
+height: 360px;
+-moz-border-radius: 15px;
+-khtml-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+line-height: 20px;
+}
+
+/* style css untuk menu */
+/*reset style dasar*/
+<div style =
+.nav,
+.nav a,
+.nav ul,
+.nav li,
+.nav div,
+.nav form,
+.nav input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+.nav a { text-decoration: none; }
+ 
+.nav li { list-style: none; }
+
+/**/
+.nav {
+    display: inline-block;
+    position: relative;
+    cursor: default;
+    z-index: 500;
+}
+.nav > li {
+    display: block;
+    float: left;
+}
+
+/*stylink menu*/
+.nav > li > a {
+    position: relative;
+    display: block;
+    z-index: 510;
+    height: 54px;
+    padding: 0 20px;
+    line-height: 54px;
+ 
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    color: #ffffff;
+    text-shadow: 0 0 1px rgba(0,0,0,.35);
+ 
+    background: #3399ff;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #3399ff;
+ 
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.nav > li:hover > a { background: #333333; }
+ 
+.nav > li:first-child > a {
+    border-radius: 3px 0 0 3px;
+    border-left: none;
+}
+
+.nav > li.nav-search > form {
+    position: relative;
+    width: inherit;
+    height: 54px;
+    z-index: 510;
+    border-left: 1px solid #ffffff;
+}
