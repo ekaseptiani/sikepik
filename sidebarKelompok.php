@@ -16,13 +16,13 @@ include "koneksi.php";
 		<?php
 		//AIzaSyCUE80J-YGPmnKCtOXVcxklDdAq-dKrc5c
 							if(!empty($_GET['id'])){
-								$sql_kec  	= "select * from kecamatan WHERE id_kecamatan = '".$_GET['id']."' order by id_kecamatan";
+								$sql_kec  	= "select * from db_datakelompok WHERE id = ".$_GET['id'];
 							}else{
-								$sql_kec  	= "select * from kecamatan order by id_kecamatan";
+								$sql_kec  	= "select * from db_datakelompok order by id";
 							}
 							$qry_kec 	= mysql_query($sql_kec);
 							$kec = mysql_fetch_assoc($qry_kec);
-							var_dump($kec);
+							// var_dump($kec);
 							
 					  ?>
 		
@@ -31,17 +31,32 @@ include "koneksi.php";
 		$(function(){
 			initMap();
 		});
+		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		var labelIndex = 0;
+
 		 function initMap() {
-			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
+			var lokalisasi = {lat: <?php echo $kec['latitude']?>, lng: <?php echo $kec['longitude']?>};
 			var map = new google.maps.Map(document.getElementById('peta'), {
 			  zoom: 15,
 			  center: lokalisasi
 			});
+			var infowindow = new google.maps.InfoWindow({
+			  content: '<?php echo $kec['nama']?> adalah kelompok petani ikan yang beralamatkan di <?php echo $kec['alamat']?>'
+			});
+
 			var marker = new google.maps.Marker({
 			  position: lokalisasi,
 			  map: map,
+			  label: labels[labelIndex++ % labels.length],
+			  animation: google.maps.Animation.DROP,
+			  title: '<?php echo $kec['nama']?>',
 			  icon: 'img/icon.png'
 			});
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+
+
 		  } 
 		
 

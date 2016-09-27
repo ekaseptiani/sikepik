@@ -14,6 +14,11 @@
     <title>s i k e p i k</title>
     <meta http-equiv="Content-Type" content="text/php; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css" />
+	<style>
+		.hide{
+			visibility: hidden;
+		}
+	</style>
 </head>
 
 <body>
@@ -64,6 +69,10 @@
 									$qry_txt = str_replace('---src---', $str, $qry_txt);									
 									$query=mysql_query($qry_txt); 
 									while($data=mysql_fetch_array($query, MYSQL_ASSOC)) {
+										$hide = '';
+										if($data['latitude'] == '0.000000' || $data['longitude'] == '0.000000'){
+											$hide = 'hide';
+										}
 										$sql = '
 											SELECT
 												b.`nama` AS `nama_kelompok`,
@@ -86,8 +95,9 @@
 											<td class='ztd'><?php echo"$data[alamat]"; ?></td>
 											<td class='ztd'><?php echo"$data[no_hp]"; ?></td>
 											<td class='ztd'><?php echo $komoditas; ?></td>
-											<td class='ztd'><?php echo $sidebarKelompok; ?> 
-											<input type="submit" class="button" name="Lihat Lokasi" value="Lihat Lokasi" onClick='top.location'="sidebarKelompok"/></td>
+											<td class='ztd'>
+												<a href="sidebarKelompok.php?id=<?php echo $data['id']?>" target="_balnk"><button class="button <?php echo $hide?>">Lihat Lokasi</button></a>
+											</td>
 											
 										</tr>
 										
