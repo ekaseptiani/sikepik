@@ -40,10 +40,6 @@ if ($module=='db_datakelompok' AND $act=='update'){
 // Update Room Type
 if ($module=='db_datakelompok' AND $act=='insertnew'){
 	
-	//echo $_POST['nama'];
-	//echo $_POST['alamat'];
-	//echo $_POST['no_hp'];
-	//echo $_POST['id_kecamatan'];
 	// var_dump($_POST);die;
 	$insert_kelompok = mysql_query("INSERT INTO db_datakelompok(
 									nama,

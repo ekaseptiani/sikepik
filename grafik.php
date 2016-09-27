@@ -16,17 +16,14 @@
   </head>
   <body>
       <div id="kanvas">
-          <div id="header">
-              <div class="judul"><center>S I K E P I K  </div>
-              <div class="deskripsi"><center>Sistem Informasi Kelompok Petani Ikan Konsumsi Di Dinas Perikanan dan Kelautan Kabupaten Sleman</div>
-          </div>
+          <div id="header"></div>
           <div id="menu">   
               <ul class ="nav">
                   <li><a href="index.php">Beranda</a></li>
                   <li><a href="index-1.php">Komoditas</a></li>
                   <li><a href="index-2.php">Data Kelompok</a></li>
 				  <li><a href="grafik.php">Grafik</a></li>
-                  <li><a href="index-3.php">Login Staff</a></li>
+                  <li><a href="../baru/admin/index.php">Login Staff</a></li>
 				  
               </ul>          
           </div>
@@ -34,9 +31,6 @@
           <div class="grafik" id="grafik_kelompok"></div>
           <div style="clear: both"></div>
 			
-		
-		  
-
           <div id="footer">
               <div class="">
 				<center>Copyright ekaseptiyani</center> &nbsp; 

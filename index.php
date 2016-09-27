@@ -66,12 +66,12 @@ include "koneksi.php";
 						['<li><a href="index-2.php?id=<?php echo "$id_kec"?>"><?php echo "$nama";?></li><img  width="95" height="500"  src = "../foto/<?php echo "$gambar"; ?>"></img></a>',
 							<?php echo $lang; ?>, 
 							<?php echo $long; ?>
-						],
-	  
-	  		<?php 
-	  		
+						],					
+						
+	  		<?php 	
 
-				} //-- While
+				} 
+							
 			}
 		?>
 		
@@ -106,10 +106,7 @@ include "koneksi.php";
   </head>
   <body >
       <div id="kanvas">
-          <div id="header">
-              <div class="judul"><center>S I K E P I K  </div>
-              <div class="deskripsi"><center>Sistem Informasi Kelompok Petani Ikan Konsumsi Di Dinas Perikanan dan Kelautan Kabupaten Sleman</div>
-          </div>
+          <div id="header"></div>
           <div id="menu">   
               <ul class ="nav">
                   <li><a href="index.php">Beranda</a></li>

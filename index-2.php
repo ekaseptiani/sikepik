@@ -20,9 +20,9 @@
     <div id="kanvas">
         <div id="header">
             <div class="judul">
-                <center>S I K E P I K</div>
+                <center></div>
             <div class="deskripsi">
-                <center>Sistem Informasi Kelompok Petani Ikan Konsumsi Di Dinas Perikanan dan Kelautan Kabupaten Sleman</div>
+                <center></div>
         </div>
         <div id="menu">   
               <ul class ="nav">
@@ -30,7 +30,7 @@
                   <li><a href="index-1.php">Komoditas</a></li>
                   <li><a href="index-2.php">Data Kelompok</a></li>
 				  <li><a href="grafik.php">Grafik</a></li>
-                  <li><a href="index-3.php">Login Staff</a></li>
+                  <li><a href="../baru/admin/index.php">Login Staff</a></li>
 				  
               </ul>
         </div>
@@ -49,6 +49,9 @@
                             <th class="zth">Alamat</th>
                             <th class="zth">No.Hp</th>
 							<th class="zth">Komoditas</th>
+							<th class="zth">Lokasi</th>
+							
+							
                             <tr="ztr">
 							
                                 <?php 
@@ -83,6 +86,9 @@
 											<td class='ztd'><?php echo"$data[alamat]"; ?></td>
 											<td class='ztd'><?php echo"$data[no_hp]"; ?></td>
 											<td class='ztd'><?php echo $komoditas; ?></td>
+											<td class='ztd'><?php echo $sidebarKelompok; ?> 
+											<input type="submit" class="button" name="Lihat Lokasi" value="Lihat Lokasi" onClick='top.location'="sidebarKelompok"/></td>
+											
 										</tr>
 										
 								<?php $i++;}  ?>

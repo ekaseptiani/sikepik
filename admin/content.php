@@ -50,40 +50,6 @@ elseif ($_GET[module]=='rental'){
   }
 }
 
-// Pasang Iklan
-elseif ($_GET[module]=='iklan'){
-  if ($_SESSION['leveluser']=='admin'){
-    include "modul/mod_iklan/iklan.php";
-  }
-}
-
-// Panduan Galeri Hotel
-elseif ($_GET[module]=='galeri_hotel'){
-  if ($_SESSION['leveluser']=='admin'){
-    include "modul/mod_galeri_hotel/galeri_hotel.php";
-  }
-}
-
-// Panduan Galeri Rental
-elseif ($_GET[module]=='galeri_rental'){
-  if ($_SESSION['leveluser']=='admin'){
-    include "modul/mod_galeri_rental/galeri_rental.php";
-  }
-}
-
-// Panduan Galeri
-elseif ($_GET[module]=='galeri'){
-  if ($_SESSION['leveluser']=='admin'){
-    include "modul/mod_galeri/galeri.php";
-  }
-}
-
-// Panduan rekomendasi
-elseif ($_GET[module]=='rekomendasi'){
-  if ($_SESSION['leveluser']=='admin'){
-    include "modul/mod_rekomendasi/rekomendasi.php";
-  }
-}
 
 // Panduan komoditas
 elseif ($_GET[module]=='komoditas'){

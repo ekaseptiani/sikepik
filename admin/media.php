@@ -80,28 +80,13 @@ else{
 					<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-book"></i> Artikel <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li><a href="?module=wisata"><i class="fa fa-fw fa-paw"></i> Wisata</a></li>
-                            <li><a href="?module=hotel"><i class="fa fa-fw fa-hotel"></i> Hotel & Penginapan</a></li>
-                            <li><a href="?module=rental"><i class="fa fa-fw fa-car"></i> Rental</a></li>
-                            <li><a href="?module=panduan"><i class="fa fa-fw fa-car"></i> Panduan Wisata</a></li>
+                            <li><a href="?module=wisata"><i class="fa fa-fw fa-paw"></i> Gurami</a></li>
+                            <li><a href="?module=hotel"><i class="fa fa-fw fa-hotel"></i> NIla</a></li>
+                            <li><a href="?module=rental"><i class="fa fa-fw fa-car"></i> Grascarp</a></li>
+                            <li><a href="?module=panduan"><i class="fa fa-fw fa-car"></i> Bawal</a></li>
                         </ul>
                     </li>
-					
-					<li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-book"></i> Keterangan <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo1" class="collapse">
-							<li><a href="?module=help"><i class="fa fa-fw fa-info-circle"></i> Keterangan Sidebar</a></li>
-							<li><a href="?module=rekomendasi"><i class="fa fa-fw fa-bookmark"></i> Rekomendasi</a></li>
-                        </ul>
-                    </li>
-					
-                    <li><a href="?module=iklan"><i class="fa fa-fw fa-tag"></i> Pasang Iklan</a></li>
-                    
-                    <li><a href="?module=sosmed"><i class="fa fa-fw fa-globe"></i> Sosial Media</a></li>
-                    <li><a href="?module=tentang_kami"><i class="fa fa-fw fa-child"></i> Tentang Kami</a></li>
-                    <li><a href="?module=subscribe"><i class="fa fa-fw fa-envelope"></i> Subscribe</a></li>
-                    <li><a href="?module=faq"><i class="fa fa-fw fa-comment"></i> FAQ</a></li>
-                    <li><a href="?module=kontak"><i class="fa fa-fw fa-phone"></i> Kontak</a></li>                    
+				          
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

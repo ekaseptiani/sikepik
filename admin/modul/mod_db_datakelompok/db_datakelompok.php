@@ -28,12 +28,14 @@ else { ?>
 										<thead>
 											<tr>
 												<th>NO</th>
-												<th>nama</th>
-												<th>alamat</th>
-												<th>no_hp</th>
-												<th>komoditas</th>
-												<th>id_kecamatan</th>
-												<th>aksi</th>
+												<th>Nama</th>
+												<th>Alamat</th>
+												<th>No_hp</th>
+												<th>Komoditas</th>
+												<th>Id_kecamatan</th>
+												<th>Longitude</th>
+												<th>Latitude</th>
+												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -65,6 +67,8 @@ else { ?>
 													<td><?php echo"$m[no_hp]" ?></td>
 													<td><ul><?php echo $komoditas; ?></ul></td>
 													<td><?php echo"$m[id_kecamatan]" ?></td>
+													<td><?php echo"$m[longitude]" ?></td>
+													<td><?php echo"$m[latitude]" ?></td>
 													
 													<td class="center">
 														<a href="<?php echo"?module=db_datakelompok&act=edit&id=$m[id]";?>">
@@ -112,6 +116,10 @@ else { ?>
 									<input class="isi form-control" name="no_hp" type="text">									
 									<label>Id_kecamatan</label>
 									<input class="isi form-control" name="id_kecamatan" type="text">
+									<label>Longitude</label>
+									<input class="isi form-control" name="longitude" type="text">
+									<label>Latitude</label>
+									<input class="isi form-control" name="latitude" type="text">
 									<div class="form-group">
 									<label>Komoditas</label>
 										<table>
@@ -177,7 +185,9 @@ else { ?>
 						`nama`='". $_POST['nama'] ."',
 						`alamat`='". $_POST['alamat'] ."',
 						`no_hp`='". $_POST['no_hp'] ."',
-						`id_kecamatan`='". $_POST['kecamatan'] ."'
+						`id_kecamatan`='". $_POST['kecamatan'] ."',
+						`longitude`='". $_POST['longitude'] ."',
+						`latitude`='". $_POST['latitude'] ."'
 						WHERE `id`='". $_POST['id'] ."'
 					";
 					$sql_update_kel_exec = mysql_query($sql_update_kel) or die(mysql_error());
@@ -220,7 +230,11 @@ else { ?>
 										<label>Alamat</label>
 										<input class="isi form-control" name="alamat" type="text" value="<?php echo"$s[alamat]" ?>">
 										<label>No_Hp</label>
-										<input class="isi form-control" name="no_hp" type="text" value="<?php echo"$s[no_hp]" ?>">											
+										<input class="isi form-control" name="no_hp" type="text" value="<?php echo"$s[no_hp]" ?>">	
+										<label>Longitude</label>
+										<input class="isi form-control" name="longitude" type="text" value="<?php echo"$s[longitude]" ?>">											
+										<label>Latitude</label>
+										<input class="isi form-control" name="latitude" type="text" value="<?php echo"$s[latitude]" ?>">
 										<label>Kecamatan</label>
 										<?php
 											$sql_kec = "SELECT * FROM kecamatan ORDER BY nama";
