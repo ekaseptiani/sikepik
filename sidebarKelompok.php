@@ -1,4 +1,4 @@
-<?php
+	<?php
 include "koneksi.php";
 
 ?>
@@ -29,19 +29,21 @@ include "koneksi.php";
 		<script type="text/javascript">
     
 		$(function(){
-			window.onload = function() {
-					var myLatlng = new google.maps.LatLng(-7.802726, 110.438125);
-					var mapOptions = {
-					  zoom: 13,
-					  center: myLatlng,
-					  mapTypeId: 'terrain'
-					};
-					var map = new google.maps.Map(document.getElementById('peta'),
-						mapOptions);
-				  };
+			initMap();
 		});
-				  
-				
+		 function initMap() {
+			var lokalisasi = {lat: -7.802726, lng: 110.438125};
+			var map = new google.maps.Map(document.getElementById('peta'), {
+			  zoom: 15,
+			  center: lokalisasi
+			});
+			var marker = new google.maps.Marker({
+			  position: lokalisasi,
+			  map: map,
+			  icon: 'img/icon.png'
+			});
+		  } 
+		
 
 	</script>
   </head>
