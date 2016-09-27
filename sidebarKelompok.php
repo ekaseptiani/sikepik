@@ -31,9 +31,7 @@ include "koneksi.php";
 		$(function(){
 			initMap();
 		});
-		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		var labelIndex = 0;
-
+		
 		 function initMap() {
 			var lokalisasi = {lat: <?php echo $kec['latitude']?>, lng: <?php echo $kec['longitude']?>};
 			var map = new google.maps.Map(document.getElementById('peta'), {
@@ -47,7 +45,6 @@ include "koneksi.php";
 			var marker = new google.maps.Marker({
 			  position: lokalisasi,
 			  map: map,
-			  label: labels[labelIndex++ % labels.length],
 			  animation: google.maps.Animation.DROP,
 			  title: '<?php echo $kec['nama']?>',
 			  icon: 'img/icon.png'

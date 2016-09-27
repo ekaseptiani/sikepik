@@ -37,7 +37,7 @@ include "koneksi.php";
 			while($kel = mysql_fetch_assoc($result)){
 				// var_dump($kel);
 				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
-					$str .='['.$kel['latitude'].','.$kel['longitude'] .'],';
+					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'"],';
 				}
 			}
 			$str = trim($str, ',');
@@ -53,6 +53,8 @@ include "koneksi.php";
 			initMap();
 		});
 		 function initMap() {
+			var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			var labelIndex = 0;
 			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
 			var lok_marker = [<?php echo $str?>];
 			console.log(lok_marker);
@@ -62,11 +64,20 @@ include "koneksi.php";
 			});
 			
 			for(i=0; i<lok_marker.length; i++){
+				var infowindow = new google.maps.InfoWindow({
+					content: lok_marker[i][2] + ' adalah kelompok petani ikan yang beralamatkan di ' + lok_marker[i][3]
+				});
 				var marker = new google.maps.Marker({
 				  position: {lat: lok_marker[i][0], lng: lok_marker[i][1]},
 				  map: map,
+				  label: labels[labelIndex++ % labels.length],
+				  animation: google.maps.Animation.DROP,
+				  title: lok_marker[i][2],
 				  icon: 'img/icon.png'
 				});
+				marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
 			}
 		}
 
