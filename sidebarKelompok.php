@@ -32,7 +32,7 @@ include "koneksi.php";
 			initMap();
 		});
 		 function initMap() {
-			var lokalisasi = {lat: -7.802726, lng: 110.438125};
+			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
 			var map = new google.maps.Map(document.getElementById('peta'), {
 			  zoom: 15,
 			  center: lokalisasi
