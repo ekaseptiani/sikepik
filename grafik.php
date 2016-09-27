@@ -46,16 +46,17 @@
 				$('#grafik_kelompok').highcharts({
 					title: {
 						text: 'JUMLAH KELOMPOK-KECAMATAN PER TAHUN',
-						x: -20 //center
+						x: -30 //center
 					},
 					
 					xAxis: {
-						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-							'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+						categories: ['Berbah', 'Cangkringan', 'Depok', 'Gamping', 'Godean', 'Kalasan',
+									 'Minggir', 'Mlati', 'Moyudan', 'Ngaglik', 'Ngemplak', 'pakem',
+									 'Prambanan','Seyegan','Sleman','Tempel','Turi']
 					},
 					yAxis: {
 						title: {
-							text: 'Temperature (°C)'
+							text: 'Jumlah Kelompok '
 						},
 						plotLines: [{
 							value: 0,
@@ -64,7 +65,7 @@
 						}]
 					},
 					tooltip: {
-						valueSuffix: '°C'
+						valueSuffix: ''
 					},
 					legend: {
 						layout: 'vertical',
@@ -74,7 +75,7 @@
 					},
 					series: [{
 						name: 'JUMLAH',
-						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+						data: [30, 52, 50, 81, 83, 47, 39, 53, 71, 28, 44, 35, 9, 11, 10, 11, 15]
 					}]
 				});
 			});
