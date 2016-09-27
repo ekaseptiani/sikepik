@@ -1,6 +1,6 @@
 	<div id="komoditas">
             <div class="isibar">
-                GRAFIK
+                <center>GRAFIK</center>
                 <ul>
 					<li><a href="grafik.php">Jumlah Kelompok Tiap Kecamatan</li>
 					<li><a href="grafik_komoditas.php">Jumlah Komoditas</li>
