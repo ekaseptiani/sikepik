@@ -11,96 +11,64 @@ include "koneksi.php";
         <link rel="stylesheet" type="text/css" href="style.css" />
 		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="koneksi.php"></script>
-		<!--<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCbObu67RtxzrOsuCgS-bhppjBpEjOWjWo" type="text/javascript"></script> -->
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt-QZIfHk2E98xlo31dp-pggta0JTer4g&callback=initMap" type="text/javascript"></script> 
+		<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
 		<?php
-							if(!empty($_GET['id'])){
-								$sql_kec  	= "select * from kecamatan WHERE id_kecamatan = '".$_GET['id']."' order by id_kecamatan";
-							}else{
-								$sql_kec  	= "select * from kecamatan order by id_kecamatan";
-							}
-							$qry_kec 	= mysql_query($sql_kec);
-							$kec = mysql_fetch_assoc($qry_kec);
-							// var_dump($kec);
-							
-					  ?>
+			if(!empty($_GET['id'])){
+				$sql_kec  	= "select * from kecamatan WHERE id_kecamatan = '".$_GET['id']."' order by id_kecamatan";
+			}else{
+				$sql_kec  	= "select * from kecamatan order by id_kecamatan";
+			}
+			$qry_kec 	= mysql_query($sql_kec);
+			$kec = mysql_fetch_assoc($qry_kec);
+			// var_dump($kec);
+			
+			if(!empty($_GET['id'])){
+				$query  	= "select * from db_datakelompok WHERE id_kecamatan = ".$_GET['id'];
+				$zoom = 12;
+			}else{
+				$query  	= "select * from db_datakelompok order by id_kecamatan";
+				$zoom = 10;
+			}
+			
+			$result 	= mysql_query($query) or die(mysql_error());
+			
+			$str = '';
+			while($kel = mysql_fetch_assoc($result)){
+				// var_dump($kel);
+				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
+					$str .='['.$kel['latitude'].','.$kel['longitude'] .'],';
+				}
+			}
+			$str = trim($str, ',');
+			// var_dump($str);
+			
+			
+		 ?>
 		
 		<script type="text/javascript">
     
-	(function() {
-				  window.onload = function() {
-					var map;
-					//Parameter Google maps
-					var options = {
-					  zoom: 13, //level zoom
-					  //posisi tengah peta
-					  
-					  center: new google.maps.LatLng(<?php echo $kec['lat']?>, <?php echo $kec['long']?>),
-					  mapTypeId: google.maps.MapTypeId.ROADMAP
-					};
-					
-					 // Buat peta di 
-					var map = new google.maps.Map(document.getElementById('peta'), options);
-					 // Tambahkan Marker 
-					 var locations = [
-						<?php
-							if(!empty($_GET['id'])){
-								$query  	= "select * from kecamatan WHERE id_kecamatan = '".$_GET['id']."' order by id_kecamatan";
-							}else{
-								$query  	= "select * from kecamatan order by id_kecamatan";
-							}
-							$result 	= mysql_query($query);
-							$totalRow 	= mysql_num_rows( $result );
-							
-							if ($totalRow==0) {
-						?>
-							<p>Not Data Yet</p>
-						<?php  
-						}else{
-							while($data=mysql_fetch_array($result)) {
-								$id_kec	= $data["id_kecamatan"];
-								$nama	= $data["nama"];
-								$long	= $data["long"];
-								$lang	= $data["lat"];		
-						?>
-						['<li><a href="index-2.php?id=<?php echo "$id_kec"?>"><?php echo "$nama";?></li><img  width="95" height="500"  src = "../foto/<?php echo "$gambar"; ?>"></img></a>',
-							<?php echo $lang; ?>, 
-							<?php echo $long; ?>
-						],					
-						
-	  		<?php 	
-
-				} 
-							
+		$(function(){
+			
+			initMap();
+		});
+		 function initMap() {
+			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
+			var lok_marker = [<?php echo $str?>];
+			console.log(lok_marker);
+			var map = new google.maps.Map(document.getElementById('peta'), {
+			  zoom: <?php echo $zoom?>,
+			  center: lokalisasi
+			});
+			
+			for(i=0; i<lok_marker.length; i++){
+				var marker = new google.maps.Marker({
+				  position: {lat: lok_marker[i][0], lng: lok_marker[i][1]},
+				  map: map,
+				  icon: 'img/icon.png'
+				});
 			}
-		?>
-		
-					];
-					  var infowindow = new google.maps.InfoWindow();
-
-					var marker, i;
-					 /* kode untuk menampilkan banyak marker */
-					for (i = 0; i < locations.length; i++) {  
-					  marker = new google.maps.Marker({
-						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-						map: map,
-						 icon: 'img/icon.png'
-					  });
-					 /* menambahkan event clik untuk menampikan
-						 infowindows dengan isi sesuai denga
-						marker yang di klik */
-						
-					  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						return function() {
-						  infowindow.setContent(locations[i][0]);
-						  infowindow.open(map, marker);
-						}
-					  })(marker, i));
-					}
-				  
-
-				  };
-				})();
+		}
 
 	</script>
   </head>
