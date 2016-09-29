@@ -49,7 +49,7 @@ if(isset($_GET['id'])){
                   <li><a href="index-1.php">Komoditas</a></li>
                   <li><a href="index-2.php">Data Kelompok</a></li>
 				  <li><a href="grafik.php">Grafik</a></li>
-                  <li><a href="../baru/admin/index.php">Login Staff</a></li>
+                  <li><a href="../sikepik/admin/index.php">Login Staff</a></li>
 				  
               </ul>          
           </div>
