@@ -31,11 +31,6 @@
           <div class="grafik" id="grafik_kelompok"></div>
           <div style="clear: both"></div>
 			
-          <div id="footer">
-              <div class="">
-				<center>Copyright ekaseptiyani</center> &nbsp; 
-			  </div>
-          </div>
 	  </div>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/highcharts/highcharts.js"></script>

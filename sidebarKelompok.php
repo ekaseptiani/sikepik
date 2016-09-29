@@ -63,7 +63,7 @@ include "koneksi.php";
           <div id="content">
               <div class="content">
                       <table>
-                       <center> <div id ="peta" style="width: 820px; height: 390px;float:center"></div>
+                       <center> <div id ="peta" style="width: 1020px; height: 450px;float:center"></div>
               </div>
           </div>  
           <div style="clear: both"></div>

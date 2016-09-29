@@ -28,7 +28,7 @@ include "koneksi.php";
 				$zoom = 12;
 			}else{
 				$query  	= "select * from db_datakelompok order by id_kecamatan";
-				$zoom = 10;
+				$zoom = 12;
 			}
 			
 			$result 	= mysql_query($query) or die(mysql_error());

@@ -73,10 +73,6 @@ session_start();
 					<label>Kelompok</label>
 					<label class="form-control"><?php echo $kelompok['nama']?></label>
 				</div>
-				<div class="form-group">
-					<label>Tanggal Didaftarkan</label>
-					<input type="date" name="periode" class="form-control">
-				</div>
 					
 				<div class="form-group">
 					<label>Komoditas</label>
