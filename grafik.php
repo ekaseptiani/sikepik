@@ -1,6 +1,10 @@
 <?php
 	include "koneksi.php";
+	$q=mysql_query("SELECT kecamatan.*, db_datakelompok.id, COUNT(id) FROM db_datakelompok
+		JOIN kecamatan ON kecamatan.id_kecamatan=db_datakelompok.id_kecamatan
+		GROUP BY db_datakelompok.id_kecamatan");
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +27,7 @@
                   <li><a href="index-1.php">Komoditas</a></li>
                   <li><a href="index-2.php">Data Kelompok</a></li>
 				  <li><a href="grafik.php">Grafik</a></li>
-                  <li><a href="../sikepik/admin/index.php">Login Staff</a></li>
+                  <li><a href="../baru/admin/index.php">Login Staff</a></li>
 				  
               </ul>          
           </div>
@@ -45,9 +49,12 @@
 					},
 					
 					xAxis: {
-						categories: ['Berbah', 'Cangkringan', 'Depok', 'Gamping', 'Godean', 'Kalasan',
-									 'Minggir', 'Mlati', 'Moyudan', 'Ngaglik', 'Ngemplak', 'pakem',
-									 'Prambanan','Seyegan','Sleman','Tempel','Turi']
+						categories: [	<?php
+								while($r=mysql_fetch_array($q)){
+									echo "['".$r["nama"]."'],";
+								}
+								?>
+												]
 					},
 					yAxis: {
 						title: {
@@ -71,6 +78,7 @@
 					series: [{
 						name: 'JUMLAH',
 						data: [30, 52, 50, 81, 83, 47, 39, 53, 71, 28, 44, 35, 9, 11, 10, 11, 15]
+						
 					}]
 				});
 			});
