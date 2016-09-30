@@ -23,28 +23,26 @@
                   <li><a href="index-1.php">Komoditas</a></li>
                   <li><a href="index-2.php">Data Kelompok</a></li>
 				  <li><a href="grafik.php">Grafik</a></li>
-                  <li><a href="../baru/admin/index.php">Login Staff</a></li>
-				  
+                  <li><a href="../baru/admin/index.php">Login Staff</a></li> 
               </ul>          
           </div> 
 		  
-                  <?php include 'sidebarGrafik.php';?>
-				  <div class= "grafik">
-          <div style="clear: both"></div>		  
+		<?php include 'sidebarGrafik.php';?>
+		<div class= "grafik">
+			<div style="clear: both"></div>		  
 			<div id="view" style="min-width: 100px; height: 400px; margin: 0 auto"></div>
+		</div>
+	<?php 
+		//Membuat Query prosentase komoditas
+		$q=mysql_query("SELECT komoditas.*, subkomoditas.id_komoditas,SUM(hasil_panen) as hasil_panen FROM subkomoditas
+			JOIN komoditas ON komoditas.id_komoditas=subkomoditas.id_komoditas
+			GROUP BY subkomoditas.id_komoditas");
+	?>
 
-	  </div>
-<?php 
-	//Membuat Query
-	$q=mysql_query("SELECT komoditas.*, subkomoditas.id_komoditas,SUM(hasil_panen) as hasil_panen FROM subkomoditas
-		JOIN komoditas ON komoditas.id_komoditas=subkomoditas.id_komoditas
-		GROUP BY subkomoditas.id_komoditas");
-?>
-
-<!-- File yang diperlukan dalam membuat chart -->
-<script src="js/jquery.min.js"></script>
-<script src="js/highcharts.js"></script>
-<script src="js/exporting.js"></script>
+	<!-- File yang diperlukan dalam membuat chart -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="js/exporting.js"></script>
 
 
 <script type="text/javascript">
@@ -69,7 +67,7 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'jUMLAH KOMODITAS'  //KWI TENTANG JUDUL GRAFIK
+            text: 'JUMLAH KOMODITAS'  //KWI TENTANG JUDUL GRAFIK
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -93,10 +91,10 @@ $(function () {
             name: 'Jumlah Persentase',
             data: [
 			<?php
-		while($r=mysql_fetch_array($q)){
-		 	echo "['".$r["nama"]."',".$r["hasil_panen"]."],";
-		}
-		?>
+				while($r=mysql_fetch_array($q)){
+				echo "['".$r["nama"]."',".$r["hasil_panen"]."],";
+			}
+			?>
 			]
         }]
     });
