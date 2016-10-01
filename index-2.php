@@ -66,7 +66,11 @@
 									if(!is_null($id)){
 										$str .= ' AND id_kecamatan ='. $id; 
 									}
-									$qry_txt = str_replace('---src---', $str, $qry_txt);									
+									if(isset($_POST['key'])){
+										$str .= ' AND nama LIKE "%'. $_POST['key'] .'%"';
+									}
+									$qry_txt = str_replace('---src---', $str, $qry_txt);
+									// var_dump($qry_txt);
 									$query=mysql_query($qry_txt); 
 									while($data=mysql_fetch_array($query, MYSQL_ASSOC)) {
 										$hide = '';

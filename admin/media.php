@@ -10,6 +10,7 @@ else{
 
 <!doctype html>
 <html lang="id">
+<html lang="id">
 
 <head>
 	

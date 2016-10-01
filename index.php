@@ -21,7 +21,7 @@ include "koneksi.php";
 			}
 			$qry_kec 	= mysql_query($sql_kec);
 			$kec = mysql_fetch_assoc($qry_kec);
-			// var_dump($kec);
+			
 			
 			if(!empty($_GET['id'])){
 				$query  	= "select * from db_datakelompok WHERE id_kecamatan = ".$_GET['id'];
@@ -35,21 +35,32 @@ include "koneksi.php";
 			
 			$str = '';
 			while($kel = mysql_fetch_assoc($result)){
-				// var_dump($kel);
 				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
-					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'"],';
+					$sql = '
+											SELECT
+												b.`nama` AS `nama_kelompok`,
+												c.`nama` AS `nama_komoditas`
+											FROM `subkomoditas` a
+											JOIN db_datakelompok b ON b.`id` = a.`id_datakelompok`
+											JOIN `komoditas` c ON c.`id_komoditas` = a.`id_komoditas`
+											WHERE b.`id` ='. $kel['id'];
+										
+										$exec_sql = mysql_query($sql);
+										$komoditas = '- ';
+										while($result = mysql_fetch_assoc($exec_sql)){
+											$komoditas .= $result['nama_komoditas'] .', ';
+										}
+										$komoditas = trim($komoditas, ',');
+					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].', '. $komoditas .'"],';
 				}
 			}
 			$str = trim($str, ',');
-			// var_dump($str);
-			
-			
+			var_dump($str);
 		 ?>
 		
 		<script type="text/javascript">
     
 		$(function(){
-			
 			initMap();
 		});
 		 function initMap() {
@@ -57,15 +68,13 @@ include "koneksi.php";
 			var labelIndex = 0;
 			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
 			var lok_marker = [<?php echo $str?>];
-			console.log(lok_marker);
 			var map = new google.maps.Map(document.getElementById('peta'), {
 			  zoom: <?php echo $zoom?>,
 			  center: lokalisasi
 			});
-			
 			for(i=0; i<lok_marker.length; i++){
 				var infowindow = new google.maps.InfoWindow({
-					content: lok_marker[i][2] + ' adalah kelompok petani ikan yang beralamatkan di ' + lok_marker[i][3]
+					content: lok_marker[i][2] + ' <br>' + lok_marker[i][3]
 				});
 				var marker = new google.maps.Marker({
 				  position: {lat: lok_marker[i][0], lng: lok_marker[i][1]},
@@ -92,9 +101,14 @@ include "koneksi.php";
                   <li><a href="index-1.php">Komoditas</a></li>
                   <li><a href="index-2.php">Data Kelompok</a></li>
 				  <li><a href="grafik.php">Grafik</a></li>
-                  <li><a href="../sikepik/admin/index.php">Login Staff</a></li>
-				  
-              </ul>          
+                  <li><a href="../sikepik/admin/index.php">Login Staff</a></li>				  
+              </ul>
+			  <div style="float:right">
+					<form action="index-2.php" method="POST">
+						<input type="text" name="key" placeholder="Cari Kelompok....">
+						<input type="submit" value="cari">
+					</form>
+			  </div>
           </div>
 		 <div id="komoditas">
               <div class="isibar">
