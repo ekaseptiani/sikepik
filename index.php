@@ -32,16 +32,17 @@ include "koneksi.php";
 			}
 			
 			$result 	= mysql_query($query) or die(mysql_error());
-			
+			// var_dump($query);
 			$str = '';
 			$id_str = '';
 			while($kel = mysql_fetch_assoc($result)){
 				// var_dump($kel);
+				$id_str .= '"'. $kel['id']  .'",';
 				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
 					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'", '. $kel['no_hp'].', '. $kel['id'].'], ';
 					// $str_view .= '["<table><tr><td>Kelompok</td><td>:</td><td>'. $kel['nama'] .'</td></tr><tr><td>Alamat</td><td>:</td><td>'. $kel['alamat'] .'</td></tr><tr><td>Telp.</td><td>:</td><td>'. $kel['no_hp'] .'</td></tr></table>"],';
 					
-					$id_str .= '"'. $kel['id']  .'",';
+					
 				}
 			}
 			$str = trim($str, ',');
@@ -57,6 +58,7 @@ include "koneksi.php";
 			WHERE a.`id` IN ($id_str)
 			ORDER BY a.`id`
 			";
+			// var_dump($sql_komoditas, $id_str);
 			$sql_komoditas_exec = mysql_query($sql_komoditas) or die(mysql_error());
 			$komoditas = '';
 			while($kom = mysql_fetch_assoc($sql_komoditas_exec)){
@@ -64,7 +66,7 @@ include "koneksi.php";
 				$komoditas .= '['. $kom['id'].', "'. $nama_kom .'"],';
 			}
 			$komoditas = trim($komoditas, ',');
-			// var_dump($komoditas);
+			
 			
 			
 		 ?>
@@ -93,6 +95,8 @@ include "koneksi.php";
 				kom[i] = {'id_kelompok':komoditas[i][0], 'komoditas':komoditas[i][1]};
 				size++;
 			}
+			if(lok_marker.length > 0){
+				
 			
 			for(i=0; i<lok_marker.length; i++){
 				var kom_str = [];
@@ -120,6 +124,9 @@ include "koneksi.php";
 				  icon: 'img/icon.png'
 				});
 				bindInfoWindow(marker, map, infowindow, desc);
+			}
+			}else{
+				alert('Koordinat Kelopok Pada Kecamatan ini Tidak Ditemukan, Kontak Admin Untuk Informasi Lebih lanjut!');
 			}
 		}
 	function bindInfoWindow(marker, map, infowindow, description, desc) {
