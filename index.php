@@ -34,13 +34,27 @@ include "koneksi.php";
 			$result 	= mysql_query($query) or die(mysql_error());
 			
 			$str = '';
+			$str_view = '';
 			while($kel = mysql_fetch_assoc($result)){
 				// var_dump($kel);
 				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
-					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'"],';
+					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'", '. $kel['no_hp'].'],';
+					// $str_view .= '["<table><tr><td>Kelompok</td><td>:</td><td>'. $kel['nama'] .'</td></tr><tr><td>Alamat</td><td>:</td><td>'. $kel['alamat'] .'</td></tr><tr><td>Telp.</td><td>:</td><td>'. $kel['no_hp'] .'</td></tr></table>"],';
+					$str_view .= '
+						<div id="content">+
+						<div id="siteNotice">+
+						</div>+
+						<h1 id="firstHeading" class="firstHeading">Uluru</h1>+
+						<div id="bodyContent">+
+						<p></p>+
+						</div>+
+						</div>
+						';
 				}
 			}
 			$str = trim($str, ',');
+			$str_view = trim($str_view, ',');
+			var_dump($str_view);
 			// var_dump($str);
 			
 			
@@ -66,7 +80,15 @@ include "koneksi.php";
 					content: ''
 				});
 			for(i=0; i<lok_marker.length; i++){
-				var desc = lok_marker[i][2] + ' adalah kelompok petani ikan yang beralamatkan di ' + lok_marker[i][3];
+				var desc = '<div id="content" style="border-radius: 2px; box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3); width: 300px; height: 180px;">' +
+								'<div id="siteNotice">' +
+								'</div>' +
+								'<h3 id="firstHeading" class="firstHeading">'+ lok_marker[i][2] +'</h3>'+
+								'<div id="bodyContent">'+
+									'<p>Alamat : '+ lok_marker[i][3] +'</p>'+
+									'<p>Nomor Kontak : '+ lok_marker[i][4] +'</p>'+
+								'</div>'+
+							'</div>';
 				var marker = new google.maps.Marker({
 				  position: {lat: lok_marker[i][0], lng: lok_marker[i][1]},
 				  map: map,
