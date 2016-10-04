@@ -45,13 +45,17 @@ if ($module=='db_datakelompok' AND $act=='insertnew'){
 									nama,
 									alamat,
 									no_hp,
-									id_kecamatan
+									id_kecamatan,
+									latitude,
+									longitude
 									) 
                             VALUES(
                                    '$_POST[nama]',
 								   '$_POST[alamat]',
 								   '$_POST[no_hp]',
-								   '$_POST[id_kecamatan]'
+								   '$_POST[id_kecamatan]',
+								   '$_POST[latitude]',
+								   '$_POST[longitude]'
 								   )");
 	if($insert_kelompok){
 		$last_id = mysql_insert_id();
