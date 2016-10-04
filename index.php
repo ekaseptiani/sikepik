@@ -28,7 +28,7 @@ include "koneksi.php";
 				$zoom = 12;
 			}else{
 				$query  	= "select * from db_datakelompok order by id_kecamatan";
-				$zoom = 12;
+				$zoom = 11;
 			}
 			
 			$result 	= mysql_query($query) or die(mysql_error());
@@ -38,7 +38,7 @@ include "koneksi.php";
 			while($kel = mysql_fetch_assoc($result)){
 				// var_dump($kel);
 				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
-					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'", '. $kel['no_hp'].'],';
+					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'", '. $kel['no_hp'].', '. $kel['id'].'], ';
 					// $str_view .= '["<table><tr><td>Kelompok</td><td>:</td><td>'. $kel['nama'] .'</td></tr><tr><td>Alamat</td><td>:</td><td>'. $kel['alamat'] .'</td></tr><tr><td>Telp.</td><td>:</td><td>'. $kel['no_hp'] .'</td></tr></table>"],';
 					
 					$id_str .= '"'. $kel['id']  .'",';
@@ -46,8 +46,25 @@ include "koneksi.php";
 			}
 			$str = trim($str, ',');
 			$id_str = trim($id_str, ',');
-			// var_dump($id_str);
-			// var_dump($str);
+			$sql_komoditas = "
+			SELECT 
+				a.`nama`,
+				a.`id`,
+				c.`nama`
+			FROM db_datakelompok a
+			LEFT JOIN subkomoditas b ON b.`id_datakelompok` = a.`id`
+			LEFT JOIN komoditas c ON c.`id_komoditas` = b.`id_komoditas`
+			WHERE a.`id` IN ($id_str)
+			ORDER BY a.`id`
+			";
+			$sql_komoditas_exec = mysql_query($sql_komoditas) or die(mysql_error());
+			$komoditas = '';
+			while($kom = mysql_fetch_assoc($sql_komoditas_exec)){
+				$nama_kom = !empty($kom['nama'])?$kom['nama']:'-';
+				$komoditas .= '['. $kom['id'].', "'. $nama_kom .'"],';
+			}
+			$komoditas = trim($komoditas, ',');
+			// var_dump($komoditas);
 			
 			
 		 ?>
@@ -55,7 +72,6 @@ include "koneksi.php";
 		<script type="text/javascript">
     
 		$(function(){
-			
 			initMap();
 		});
 		 function initMap() {
@@ -63,7 +79,7 @@ include "koneksi.php";
 			var labelIndex = 0;
 			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
 			var lok_marker = [<?php echo $str?>];
-			console.log(lok_marker);
+			var komoditas = [<?php echo $komoditas?>];
 			var map = new google.maps.Map(document.getElementById('peta'), {
 			  zoom: <?php echo $zoom?>,
 			  center: lokalisasi
@@ -71,7 +87,20 @@ include "koneksi.php";
 			var infowindow = new google.maps.InfoWindow({
 					content: ''
 				});
+			var kom = {};
+			var size = 0;
+			for(i=0; i<komoditas.length; i++){
+				kom[i] = {'id_kelompok':komoditas[i][0], 'komoditas':komoditas[i][1]};
+				size++;
+			}
+			
 			for(i=0; i<lok_marker.length; i++){
+				var kom_str = [];
+				for(j=0; j<size; j++){
+					if(kom[j]['id_kelompok'] == lok_marker[i][5]){
+						kom_str.push(kom[j]['komoditas']);
+					}
+				}
 				var desc = '<div id="content" style="border-radius: 2px; box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3); width: 300px; height: 180px;">' +
 								'<div id="siteNotice">' +
 								'</div>' +
@@ -79,6 +108,7 @@ include "koneksi.php";
 								'<div id="bodyContent">'+
 									'<p>Alamat : '+ lok_marker[i][3] +'</p>'+
 									'<p>Nomor Kontak : '+ lok_marker[i][4] +'</p>'+
+									'<p>KOmoditas : '+ kom_str +'</p>'+
 								'</div>'+
 							'</div>';
 				var marker = new google.maps.Marker({
