@@ -34,27 +34,19 @@ include "koneksi.php";
 			$result 	= mysql_query($query) or die(mysql_error());
 			
 			$str = '';
-			$str_view = '';
+			$id_str = '';
 			while($kel = mysql_fetch_assoc($result)){
 				// var_dump($kel);
 				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
 					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'", '. $kel['no_hp'].'],';
 					// $str_view .= '["<table><tr><td>Kelompok</td><td>:</td><td>'. $kel['nama'] .'</td></tr><tr><td>Alamat</td><td>:</td><td>'. $kel['alamat'] .'</td></tr><tr><td>Telp.</td><td>:</td><td>'. $kel['no_hp'] .'</td></tr></table>"],';
-					$str_view .= '
-						<div id="content">+
-						<div id="siteNotice">+
-						</div>+
-						<h1 id="firstHeading" class="firstHeading">Uluru</h1>+
-						<div id="bodyContent">+
-						<p></p>+
-						</div>+
-						</div>
-						';
+					
+					$id_str .= '"'. $kel['id']  .'",';
 				}
 			}
 			$str = trim($str, ',');
-			$str_view = trim($str_view, ',');
-			var_dump($str_view);
+			$id_str = trim($id_str, ',');
+			// var_dump($id_str);
 			// var_dump($str);
 			
 			
