@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.41 
-MySQL - 5.6.21 : Database - sikepik
+MySQL - 5.5.5-10.1.16-MariaDB : Database - sikepik
 *********************************************************************
 */
 
@@ -115,7 +115,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`username`,`password`,`level`,`id_session`) values ('admin','21232f297a57a5a743894a0e4a801fc3','admin','ai2ug621hpua3eu532na4fvbp1');
+insert  into `users`(`username`,`password`,`level`,`id_session`) values ('admin','21232f297a57a5a743894a0e4a801fc3','admin','ppmkgt50a7vv7c63reqvrcbds4');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
