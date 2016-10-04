@@ -30,7 +30,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<div class="login-panel panel panel-default">
 						<div class="panel-heading logo">
-							<img src="">
+							<!--<img src="">-->
 						</div>
 						<div class="panel-body">
 							<form name="login" action="cek_login.php" method="POST" onSubmit="return validasi(this)" role="form">
