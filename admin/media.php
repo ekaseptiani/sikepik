@@ -81,10 +81,10 @@ else{
 					<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-book"></i> Artikel <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li><a href="?module=wisata"><i class="fa fa-fw fa-paw"></i> Gurami</a></li>
-                            <li><a href="?module=hotel"><i class="fa fa-fw fa-hotel"></i> NIla</a></li>
-                            <li><a href="?module=rental"><i class="fa fa-fw fa-car"></i> Grascarp</a></li>
-                            <li><a href="?module=panduan"><i class="fa fa-fw fa-car"></i> Bawal</a></li>
+                            <li><a href="?module=gurami"><i class="fa fa-fw fa-paw"></i> Gurami</a></li>
+                            <li><a href="?module=nila"><i class="fa fa-fw fa-hotel"></i> NIla</a></li>
+                            <li><a href="?module=grasscarp"><i class="fa fa-fw fa-car"></i> Grascarp</a></li>
+                            <li><a href="?module=bawal"><i class="fa fa-fw fa-car"></i> Bawal</a></li>
                         </ul>
                     </li>
 				          
