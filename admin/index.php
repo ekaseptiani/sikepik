@@ -1,68 +1,137 @@
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
+<?php
+include "koneksi.php";
 
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
+?>
 
-		<title>Admin S i k e p i k</title>
-
-		<!-- Bootstrap Core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- MetisMenu CSS -->
-		<link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-		<!-- Custom CSS -->
-		<link href="css/sb-admin.css" rel="stylesheet">
-
-		<!-- Custom Fonts -->
-		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	</head>
-	<body OnLoad="document.login.username.focus();">
-	
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-4">
-					<div class="login-panel panel panel-default">
-						<div class="panel-heading logo">
-							<!--<img src="">-->
-						</div>
-						<div class="panel-body">
-							<form name="login" action="cek_login.php" method="POST" onSubmit="return validasi(this)" role="form">
-								<fieldset>
-									<div class="form-group input-group">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input placeholder="Username" type="text" class="form-control" name="username" onBlur="if (jQuery(this).val() == &quot;&quot;) { jQuery(this).val(&quot;username&quot;); }" onClick="jQuery(this).val(&quot;&quot;);" autofocus/>
-									</div>
-									<div class="form-group input-group">
-										<span class="input-group-addon"><i class="fa fa-sign-in"></i></span>
-										<input type="password" name="password" class="form-control" onBlur="if (jQuery(this).val() == &quot;&quot;) { jQuery(this).val(&quot;asdf1234&quot;); }" onClick="jQuery(this).val(&quot;&quot;);" placeholder="Password">
-									</div>
-									<input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>s i k e p i k </title>
+        <meta http-equiv="Content-Type" content="text/php; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="koneksi.php"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt-QZIfHk2E98xlo31dp-pggta0JTer4g&callback=initMap" type="text/javascript"></script> 
+		<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+		<?php
+			if(!empty($_GET['id'])){
+				$sql_kec  	= "select * from kecamatan WHERE id_kecamatan = '".$_GET['id']."' order by id_kecamatan";
+			}else{
+				$sql_kec  	= "select * from kecamatan order by id_kecamatan";
+			}
+			$qry_kec 	= mysql_query($sql_kec);
+			$kec = mysql_fetch_assoc($qry_kec);
+			// var_dump($kec);
+			
+			if(!empty($_GET['id'])){
+				$query  	= "select * from db_datakelompok WHERE id_kecamatan = ".$_GET['id'];
+				$zoom = 12;
+			}else{
+				$query  	= "select * from db_datakelompok order by id_kecamatan";
+				$zoom = 12;
+			}
+			
+			$result 	= mysql_query($query) or die(mysql_error());
+			
+			$str = '';
+			while($kel = mysql_fetch_assoc($result)){
+				// var_dump($kel);
+				if($kel['latitude'] != '0.000000' || $kel['longitude'] != '0.000000'){
+					$str .='['.$kel['latitude'].','.$kel['longitude'] .', "'. $kel['nama'].'", "'.$kel['alamat'].'"],';
+				}
+			}
+			$str = trim($str, ',');
+			// var_dump($str);
+			
+			
+		 ?>
 		
-	<!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+		<script type="text/javascript">
+    
+		$(function(){
+			
+			initMap();
+		});
+		 function initMap() {
+			var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			var labelIndex = 0;
+			var lokalisasi = {lat: <?php echo $kec['lat']?>, lng: <?php echo $kec['long']?>};
+			var lok_marker = [<?php echo $str?>];
+			console.log(lok_marker);
+			var map = new google.maps.Map(document.getElementById('peta'), {
+			  zoom: <?php echo $zoom?>,
+			  center: lokalisasi
+			});
+			var infowindow = new google.maps.InfoWindow({
+					content: ''
+				});
+			for(i=0; i<lok_marker.length; i++){
+				var desc = lok_marker[i][2] + ' adalah kelompok petani ikan yang beralamatkan di ' + lok_marker[i][3];
+				var marker = new google.maps.Marker({
+				  position: {lat: lok_marker[i][0], lng: lok_marker[i][1]},
+				  map: map,
+				  label: labels[labelIndex++ % labels.length],
+				  animation: google.maps.Animation.DROP,
+				  title: lok_marker[i][2],
+				  icon: 'img/icon.png'
+				});
+				bindInfoWindow(marker, map, infowindow, desc);
+			}
+		}
+	function bindInfoWindow(marker, map, infowindow, description, desc) {
+		marker.addListener('click', function() {
+        infowindow.setContent(description);
+        infowindow.open(map, this);
+    });
+}
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/sb-admin-2.js"></script>
+	</script>
+  </head>
+  <body >
+      <div id="kanvas">
+          <div id="header"></div>
+          <div id="menu">   
+              <ul class ="nav">
+                  <li><a href="index.php">Beranda</a></li>
+                  <li><a href="index-1.php">Komoditas</a></li>
+                  <li><a href="index-2.php">Data Kelompok</a></li>
+				  <li><a href="grafik.php">Grafik</a></li>
+                  <li><a href="index-3.php">Login Staff</a></li>
+				  
+              </ul>          
+			  <div style="float:right">
+					<form action="index-2.php" method="POST">
+						<input type="text" name="key" placeholder="Cari Kelompok....">
+						<input type="submit" value="cari">
+					</form>
+			  </div>
+          </div>
+		 <div id="komoditas">
+              <div class="isibar">
+				<center>KECAMATAN</center>
+                <ul>
+				
+					<?php
+						$kecamatan = mysql_query("SELECT * FROM  kecamatan ORDER By nama ASC ");
+						while($k = mysql_fetch_array($kecamatan)){
+					?>
+				
+						<li><a href="index.php?id=<?php echo $k['id_kecamatan']?>" id="lokasi" data-lokasi="<?php echo"$k[nama]";?>" ><?php echo"$k[nama]";?></a></li>
+					
+					<?php } ?>
+                </ul>
+              </div>
+          </div> 
+          
 		
-	</body>
+          <div id="content">
+              <div class="content">
+                      <table>
+                        <div id="peta" style="width: 820px; height: 390px;float:center"></div>
+              </div>
+          </div>  
+         
+          <div style="clear: both"></div>
+          
+  </body>
 </html>
