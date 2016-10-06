@@ -66,6 +66,9 @@ include "koneksi.php";
                        <center> <div id ="peta" style="width: 1020px; height: 450px;float:center"></div>
               </div>
           </div>  
+		  
+		  <a href="index.php">Kembali</a>
+		  
           <div style="clear: both"></div>
           
   </body>
